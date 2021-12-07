@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 
 export GOPATH=$HOME/go
 
-export PATH=$PATH:/opt/homebrew/bin:$GOPATH/bin:/opt/llvm-project/build/bin
+export PATH=/opt/homebrew/bin:$GOPATH/bin:/Users/than/Development/llvm-project/build/bin:/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include:$PATH
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -110,6 +110,23 @@ export PATH=$PATH:/opt/homebrew/bin:$GOPATH/bin:/opt/llvm-project/build/bin
 # Example aliases
 alias vi="nvim"
 alias vim="nvim"
-
+alias cdllvm="cd /Users/than/Development/llvm-project/"
+alias cdpack="cd ~/Development/c680/packing-mlir/"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

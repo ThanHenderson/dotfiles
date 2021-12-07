@@ -7,7 +7,7 @@ set visualbell
 
 " Line Settings
 set number
-set relativenumber
+"set relativenumber
 set tabstop=4
 set textwidth=80
 set wrap
