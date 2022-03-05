@@ -1,52 +1,57 @@
-" Syntax
-syntax on
-"set t_Co=256
-set encoding=utf-8
-"set spell spelllang=en_us
-set visualbell
 
-" Line Settings
-set number
-"set relativenumber
-set tabstop=4
-set textwidth=80
-set wrap
+" Indentation
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
 set autoindent
-" Matching paren
-set showmatch
 
-" Current Information
-set showmode
-set showcmd
-set ruler
-set title
-set modeline
-set laststatus=2
-set wildmenu
+" Lines
+set relativenumber
+set nu
+set nowrap
+set scrolloff=8
+set signcolumn=yes
+set colorcolumn=80
 
-" Enables mouse input
-set mouse=a
+" Buffers
+set hidden
 
+" Search
+set nohlsearch
+set incsearch
 
-" --------- "
-"  Plug-ins "
-" --------- "
+" History
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
 
-" NeoVim Plug
-" curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"
+" Mistakes
+set noerrorbells
 
-call plug#begin()
+" Display
+set termguicolors
+set cmdheight=2
 
-if has("nvim")
-		Plug 'dense-analysis/ale'
-		let g:ale_cpp_cc_executable = 'g++'
-		let g:ale_cpp_cc_options = '-std=c++20 -Wall'
+" Go fast
+set updatetime=50
 
-endif
+call plug#begin('~/.vim/plugged')
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 
+Plug 'pineapplegiant/spaceduck'
 call plug#end()
 
+colorscheme spaceduck
 
+" Remaps: mode lhs rhs
+let mapleader = " "
+" Search
+nnoremap <leader>s <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Search: ") })<cr>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fb <cmd>lua require "telescope".extensions.file_browser.file_browser()<cr>
 
+"Plugs: telescope, lsp, tree sitter, fugediv
