@@ -1,6 +1,6 @@
 " Syntax
 syntax on
-set t_Co=256
+"set t_Co=256
 set encoding=utf-8
 "set spell spelllang=en_us
 set visualbell
@@ -35,11 +35,15 @@ set mouse=a
 " NeoVim Plug
 " curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"
 
 call plug#begin()
 
 if has("nvim")
 		Plug 'dense-analysis/ale'
+		let g:ale_cpp_cc_executable = 'g++'
+		let g:ale_cpp_cc_options = '-std=c++20 -Wall'
+
 endif
 
 call plug#end()
