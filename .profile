@@ -6,10 +6,12 @@
 
 [ -d "/opt/homebrew/bin" ] && PATH="/opt/homebrew/bin":$PATH
 
-[ -d "/opt/homebrew/opt/llvm/bin" ] && PATH=$PATH:"/opt/homebrew/opt/llvm/bin"
+[ -d "/opt/homebrew/opt/llvm" ] && PATH=$PATH:"/opt/homebrew/opt/llvm/bin"
 
 # MacPorts
 [ -d "/opt/local/bin" ] && PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+
+[ -d "/Users/than/Library/Python/3.9/bin" ] && PATH=$PATH:"/Users/than/Library/Python/3.9/bin"
 
 
 # Agnostic
