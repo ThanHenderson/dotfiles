@@ -31,7 +31,6 @@ set undofile
 set noerrorbells
 
 " Display
-set termguicolors
 set cmdheight=2
 
 " Go fast
