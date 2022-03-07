@@ -16,10 +16,10 @@ Plug 'williamboman/nvim-lsp-installer'
 Plug 'tpope/vim-fugitive'
 
 " Colour Scheme
-Plug 'pineapplegiant/spaceduck'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
-colorscheme spaceduck
+colorscheme gruvbox
 
 let mapleader = " "
 
