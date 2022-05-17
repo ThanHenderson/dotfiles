@@ -1,8 +1,9 @@
-# MAC
+# MAC: xcrun --show-sdk-path
 
-[ -f /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk ] && SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+[ -d "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk" ] && SDKROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 
-[ -d "`xcrun --show-sdk-path`/usr/include" ] && CPATH="`xcrun --show-sdk-path`/usr/include"
+# because apple
+[ -d "$SDKROOT/usr/include" ] && CPATH="$SDKROOT/usr/include"
 
 [ -d "/opt/homebrew/bin" ] && PATH="/opt/homebrew/bin":$PATH
 
@@ -20,5 +21,5 @@
 
 [ -d "$HOME/go" ] && GOPATH="$HOME/go" && PATH=$PATH:"$GOPATH/bin"
 
+alias vi="/opt/homebrew/bin/vim"
 alias vim="nvim"
-alias vi="nvim"

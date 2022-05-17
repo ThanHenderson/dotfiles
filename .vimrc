@@ -9,7 +9,7 @@ set autoindent
 " Lines
 set relativenumber
 set nu
-set nowrap
+set wrap
 set scrolloff=8
 set signcolumn=yes
 set colorcolumn=80
@@ -20,6 +20,8 @@ set hidden
 " Search
 set nohlsearch
 set incsearch
+set smartcase
+set ignorecase
 
 " History
 set noswapfile

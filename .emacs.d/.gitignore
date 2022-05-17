@@ -1,0 +1,11 @@
+\#sync#
+LICENSE
+README.md
+bin/
+core/
+docs/
+early-init.el
+init.example.el
+modules/
+test/
+.local
