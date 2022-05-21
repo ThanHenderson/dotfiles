@@ -21,10 +21,14 @@ Plug 'williamboman/nvim-lsp-installer'
 Plug 'tpope/vim-fugitive'
 
 " Colour Scheme
-Plug 'morhetz/gruvbox'
+" Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
+" Plug 'rose-pine/neovim', { 'as': 'rose-pine', 'branch': 'main' }
+Plug 'whatyouhide/vim-gotham'
+
 call plug#end()
 
-colorscheme gruvbox
+set termguicolors
+colorscheme gotham
 
 let mapleader = " "
 

@@ -106,6 +106,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias cdmoz="cd /Users/than/Development/sm/mozilla-unified/"
 alias mach="/Users/than/Development/sm/mozilla-unified/mach"
+alias vi="/opt/homebrew/bin/vim"
+alias vim="nvim"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
