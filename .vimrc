@@ -22,6 +22,7 @@ set nohlsearch
 set incsearch
 set smartcase
 set ignorecase
+set path+=**
 
 " History
 set noswapfile
@@ -34,6 +35,9 @@ set noerrorbells
 
 " Display
 set cmdheight=2
+set wildmenu
 
 " Go fast
 set updatetime=50
+set mouse=a
+set clipboard=unnamed

@@ -18,9 +18,14 @@ fi
 
 [ -d "/Users/than/Library/Python/3.9/bin" ] && PATH=$PATH:"/Users/than/Library/Python/3.9/bin"
 
+# Scripts
+[ -d "/Users/than/Development/Scripts" ] && PATH="/Users/than/Development/Scripts":$PATH
 
 # Agnostic
 
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 [ -d "$HOME/go" ] && GOPATH="$HOME/go" && PATH=$PATH:"$GOPATH/bin"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
