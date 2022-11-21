@@ -34,9 +34,15 @@ return require('packer').startup(function(use)
     --  To enable more of the features of rust-analyzer, such as inlay hints and more!
     use 'simrat39/rust-tools.nvim'
     
-    --  Fugative
+    --  Fugative: git integration.
     use 'tpope/vim-fugitive'
-    
+
+    -- Tree Sitter: Parser tool that builds AST and provides better syntax highlighting.
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
+
     --  Markdown support in browser
     use({
         "iamcco/markdown-preview.nvim",
@@ -45,12 +51,11 @@ return require('packer').startup(function(use)
 
     --  Debugging
     use 'puremourning/vimspector'
-    
+
     --  Colour Scheme
     use 'embark-theme/vim'
     use 'rose-pine/neovim'
     use 'whatyouhide/vim-gotham'
-    use 'fxn/vim-monochrome'
     use 'marko-cerovac/material.nvim'
-
+    use 'bluz71/vim-moonfly-colors'
 end)

@@ -115,3 +115,11 @@ alias vim="nvim"
 export WASMTIME_HOME="$HOME/.wasmtime"
 
 export PATH="$WASMTIME_HOME/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export TERMINFO=/opt/local/share/terminfo
+export TERM=alacritty
+
+[ -f "/Users/than/.ghcup/env" ] && source "/Users/than/.ghcup/env" # ghcup-env

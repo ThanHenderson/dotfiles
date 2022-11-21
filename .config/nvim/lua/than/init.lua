@@ -1,11 +1,14 @@
 require ('than.packer')
-require('than.lsp')
 
 local o = vim.o
 local g = vim.g
 
 o.termguicolors = true
-g.material_style = 'deep ocean'
-vim.cmd('colorscheme material')
-
+vim.o.background = 'dark'
+vim.cmd('colorscheme rose-pine')
 g.mapleader = ' '
+
+-- Keymaps
+local keymap = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+keymap("i", "jj", "<Esc>", opts)

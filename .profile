@@ -13,6 +13,8 @@ fi
 
 [ -d "/opt/homebrew/opt/llvm" ] && PATH="/opt/homebrew/opt/llvm/bin":$PATH
 
+[ -d "/Applications/Julia-1.8.app/Contents/Resources/julia" ] && PATH="/Applications/Julia-1.8.app/Contents/Resources/julia/bin/":$PATH
+
 # MacPorts
 [ -d "/opt/local/bin" ] && PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
