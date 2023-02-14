@@ -28,6 +28,8 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+require("nvim-lsp-installer").setup {}
+
 local util = require 'lspconfig.util'
 local servers = { 'clangd' }
 for _, lsp in pairs(servers) do
