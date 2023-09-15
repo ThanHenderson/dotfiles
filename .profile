@@ -11,7 +11,7 @@ fi
 
 [ -d "/opt/homebrew/bin" ] && PATH="/opt/homebrew/bin":$PATH
 
-[ -d "/opt/homebrew/opt/llvm" ] && PATH="/opt/homebrew/opt/llvm/bin":$PATH
+[ -d "/opt/homebrew/opt/llvm@13" ] && PATH="/opt/homebrew/opt/llvm@13/bin":$PATH
 
 [ -d "/Applications/Julia-1.8.app/Contents/Resources/julia" ] && PATH="/Applications/Julia-1.8.app/Contents/Resources/julia/bin/":$PATH
 
@@ -19,6 +19,8 @@ fi
 [ -d "/opt/local/bin" ] && PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 [ -d "/Users/than/Library/Python/3.9/bin" ] && PATH=$PATH:"/Users/than/Library/Python/3.9/bin"
+
+[ -d "/opt/homebrew/anaconda3" ] && PATH="/opt/homebrew/anaconda3/bin":$PATH
 
 # Scripts
 [ -d "/Users/than/Development/Scripts" ] && PATH="/Users/than/Development/Scripts":$PATH
@@ -28,3 +30,6 @@ fi
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 [ -d "$HOME/go" ] && GOPATH="$HOME/go" && PATH=$PATH:"$GOPATH/bin"
+
+[ -d "$HOME/.emacs.d/bin" ] && PATH="$HOME/.emacs.d/bin":$PATH
+

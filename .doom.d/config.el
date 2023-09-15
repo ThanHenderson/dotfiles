@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "Nathan Henderson"
+      user-mail-address "nathan.t.henderson@outlook.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -21,7 +21,7 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light))
+(setq doom-font (font-spec :family "Go Mono" :size 13 :weight 'Bold))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -31,7 +31,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-tokyo-night)
+(setq doom-theme 'doom-one)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -83,3 +83,24 @@
 ;;  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\obj-.*\\'"))
 
 (setq lsp-enable-file-watchers nil)
+
+(global-display-fill-column-indicator-mode)
+(setq display-fill-column-indicator-column 80)
+(setq display-fill-column-indicator-character ?|)
+
+;; org journal
+(setq org-journal-date-prefix "#+TITLE: "
+      org-journal-time-prefix "* "
+      org-journal-date-format "%A, %Y-%m-%d"
+      org-journal-file-format "%Y-%m-%d.org")
+
+(setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
+
+;; org roam
+(after! org
+        (setq org-roam-directory "~/Documents/org/roam/")
+        (setq org-roam-index-file "~/Documents/org/roam/index.org"))
+
+;; Mappings
+(map! :leader "e h" #'org-html-export-to-html)
+(map! :leader "e c" #'org-babel-execute-src-block)

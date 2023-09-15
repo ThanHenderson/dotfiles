@@ -117,10 +117,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: FiraCode NF
+    family: GoMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Light
+    style: Regular
 
   # Bold font face
   #bold:
@@ -188,34 +188,90 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
+## Colors (Atom one light)
+#colors:
+#  primary:
+#    background: '0xf8f8f8'
+#    foreground: '0x2a2b33'
+#
+#  normal:
+#    black:   '0x000000'
+#    red:     '0xde3d35'
+#    green:   '0x3e953a'
+#    yellow:  '0xd2b67b'
+#    blue:    '0x2f5af3'
+#    magenta: '0xa00095'
+#    cyan:    '0x3e953a'
+#    white:   '0xbbbbbb'
+#
+#  bright:
+#    black:   '#767676'
+#    red:     '0xde3d35'
+#    green:   '0x3e953a'
+#    yellow:  '0xd2b67b'
+#    blue:    '0x2f5af3'
+#    magenta: '0xa00095'
+#    cyan:    '0x3e953a'
+#    white:   '0xffffff'
+## Colors (Gruvbox light)
+# colors:
+#   # Default colors
+#   primary:
+#     # hard contrast: background = '0xf9f5d7'
+#     background: '0xfbf1c7'
+#     # soft contrast: background = '0xf2e5bc'
+#     foreground: '0x3c3836'
+#
+#   # Normal colors
+#   normal:
+#     black:   '0xfbf1c7'
+#     red:     '0xcc241d'
+#     green:   '0x98971a'
+#     yellow:  '0xd79921'
+#     blue:    '0x458588'
+#     magenta: '0xb16286'
+#     cyan:    '0x689d6a'
+#     white:   '0x7c6f64'
+#
+#   # Bright colors
+#   bright:
+#     black:   '0x928374'
+#     red:     '0x9d0006'
+#     green:   '0x79740e'
+#     yellow:  '0xb57614'
+#     blue:    '0x076678'
+#     magenta: '0x8f3f71'
+#     cyan:    '0x427b58'
+#     white:   '0x3c3836'
+#
 # Colors (Tomorrow Night)
 colors:
-  # Default colors
-  primary:
-    background: '#000000'
-    foreground: '#dddddd'
+ # Default colors
+ primary:
+   background: '#000000'
+   foreground: '#dddddd'
 
-  # Normal colors
-  normal:
-    black:   '#000000'
-    red:     '#cc0403'
-    green:   '#19cb00'
-    yellow:  '#cecb00'
-    blue:    '#0d73cc'
-    magenta: '#cb1ed1'
-    cyan:    '#0dcdcd'
-    white:   '#dddddd'
+ # Normal colors
+ normal:
+   black:   '#000000'
+   red:     '#cc0403'
+   green:   '#19cb00'
+   yellow:  '#cecb00'
+   blue:    '#0d73cc'
+   magenta: '#cb1ed1'
+   cyan:    '#0dcdcd'
+   white:   '#dddddd'
 
-  # Bright colors
-  bright:
-    black:   '#767676'
-    red:     '#f2201f'
-    green:   '#23fd00'
-    yellow:  '#fffd00'
-    blue:    '#1a8fff'
-    magenta: '#fd28ff'
-    cyan:    '#14ffff'
-    white:   '#ffffff'
+ # Bright colors
+ bright:
+   black:   '#767676'
+   red:     '#f2201f'
+   green:   '#23fd00'
+   yellow:  '#fffd00'
+   blue:    '#1a8fff'
+   magenta: '#fd28ff'
+   cyan:    '#14ffff'
+   white:   '#ffffff'
 
 #colors:
   # Default colors
