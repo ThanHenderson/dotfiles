@@ -6,8 +6,16 @@ M.treesitter = {
     "lua",
     "javascript",
     "c",
+    "cpp",
+    "html",
     "markdown",
     "markdown_inline",
+    "toml",
+    "json",
+    "yaml",
+    "make",
+    "bash",
+    "python",
   },
   indent = {
     enable = true,
@@ -17,20 +25,21 @@ M.treesitter = {
 
 M.mason = {
   ensure_installed = {
-    -- lua stuff
+    -- lsp
     "lua-language-server",
-    "stylua",
-
-    -- web dev stuff
-    "prettier",
-
-    -- c/cpp stuff
+    "bash-language-server",
     "clangd",
-    "clang-format",
-
-    -- rust stuff
     "rust-analyzer",
-    "rustfmt"
+    "python-lsp-server",
+    "jdtls",
+
+    -- format
+    "beautysh",
+    "black",
+    "stylua",
+    "prettier",
+    "clang-format",
+    "rustfmt",
   },
 }
 

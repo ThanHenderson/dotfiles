@@ -4,7 +4,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "clangd", "rust_analyzer" }
+local servers = { "bashls", "rust_analyzer", "pylsp", "gopls", "jdtls"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -13,5 +13,13 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- 
--- lspconfig.pyright.setup { blabla}
+-- Custom config for clangd
+lspconfig["clangd"].setup {
+  cmd = {
+    "clangd",
+    "--offset-encoding=utf-16", -- To match null-ls
+    "-header-insertion=never",
+  },
+  on_attach = on_attach,
+  capabilities = capabilities,
+}

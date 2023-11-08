@@ -10,7 +10,7 @@ set autoindent
 set relativenumber
 set nu
 set wrap
-set scrolloff=8
+set scrolloff=2
 set signcolumn=yes
 set colorcolumn=80
 
@@ -41,3 +41,4 @@ set wildmenu
 set updatetime=50
 set mouse=a
 set clipboard=unnamed
+
