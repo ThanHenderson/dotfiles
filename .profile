@@ -11,7 +11,7 @@ fi
 
 [ -d "/opt/homebrew/bin" ] && PATH="/opt/homebrew/bin":$PATH
 
-[ -d "/opt/homebrew/opt/llvm@13" ] && PATH="/opt/homebrew/opt/llvm@13/bin":$PATH
+[ -d "/opt/homebrew/opt/llvm@15" ] && PATH="/opt/homebrew/opt/llvm@15/bin":$PATH
 
 [ -d "/Applications/Julia-1.8.app/Contents/Resources/julia" ] && PATH="/Applications/Julia-1.8.app/Contents/Resources/julia/bin/":$PATH
 
