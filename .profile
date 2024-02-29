@@ -1,8 +1,5 @@
 # For consistancy betwixt tmux et terminal emulator
-if [ -f /etc/profile ]; then
-    PATH=""
-    source /etc/profile
-fi
+[[ -f /etc/profile ]] PATH=""; source /etc/profile
 
 # MAC: xcrun --show-sdk-path
 [ -d "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk" ] && SDKROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"

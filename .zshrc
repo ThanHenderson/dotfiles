@@ -148,3 +148,5 @@ eval "$(zoxide init zsh)"
 [[ ! -r /Users/than/.opam/opam-init/init.zsh ]] || source /Users/than/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 export MODULAR_HOME="$HOME/.modular"
 export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
+
+bindkey -v
