@@ -114,16 +114,7 @@ export WASMTIME_HOME="$HOME/.wasmtime"
 
 export PATH="$WASMTIME_HOME/bin:$PATH"
 
-export TERMINFO='/opt/local/share/terminfo'
-export TERM=alacritty
-
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
-
-# language configuration
-[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
-export MODULAR_HOME="$HOME/.modular"
-export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
 
 bindkey -v

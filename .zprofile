@@ -8,19 +8,13 @@ typeset -U PATH path
 
 [ -d "/opt/homebrew/bin" ] && path=("/opt/homebrew/bin" $path)
 
-[ -d "/opt/homebrew/opt/llvm@15" ] && PATH="/opt/homebrew/opt/llvm@15/bin":$PATH
-
-[ -d "/Applications/Julia-1.8.app/Contents/Resources/julia" ] && PATH="/Applications/Julia-1.8.app/Contents/Resources/julia/bin/":$PATH
-
 # MacPorts
 [ -d "/opt/local/bin" ] && PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
-[ -d "/Users/than/Library/Python/3.9/bin" ] && PATH=$PATH:"/Users/than/Library/Python/3.9/bin"
-
-[ -d "/opt/homebrew/anaconda3" ] && PATH="/opt/homebrew/anaconda3/bin":$PATH
+[ -d "$HOME/Library/Python/3.9/bin" ] && PATH=$PATH:"$HOME/Library/Python/3.9/bin"
 
 # Scripts
-[ -d "/Users/than/Development/Scripts" ] && PATH="/Users/than/Development/Scripts":$PATH
+[ -d "$HOME/Development/Scripts" ] && PATH="$HOME/Development/Scripts":$PATH
 
 # Agnostic
 
