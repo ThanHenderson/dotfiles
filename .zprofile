@@ -11,15 +11,8 @@ typeset -U PATH path
 # MacPorts
 [ -d "/opt/local/bin" ] && path=("/opt/local/bin" "/opt/local/sbin" $path)
 
-[ -d "$HOME/Library/Python/3.9/bin" ] && path+="$HOME/Library/Python/3.9/bin"
-
-# Scripts
-[ -d "$HOME/Development/Scripts" ] && path=("$HOME/Development/Scripts" $path)
-
-# Agnostic
-
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-[ -d "$HOME/go" ] && GOPATH="$HOME/go" && path+="$GOPATH/bin"
+[ -d "$HOME/go" ] && GOPATH="$HOME/go" && path=("$GOPATH/bin" $path)
 
 [ -d "$HOME/.emacs.d/bin" ] && path=("$HOME/.emacs.d/bin" $path)
