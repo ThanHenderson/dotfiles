@@ -8,9 +8,6 @@ typeset -U PATH path
 
 [ -d "/opt/homebrew/bin" ] && path=("/opt/homebrew/bin" $path)
 
-# MacPorts
-[ -d "/opt/local/bin" ] && path=("/opt/local/bin" "/opt/local/sbin" $path)
-
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 [ -d "$HOME/go" ] && GOPATH="$HOME/go" && path=("$GOPATH/bin" $path)
