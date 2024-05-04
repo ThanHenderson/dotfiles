@@ -87,7 +87,74 @@
     userEmail = "nathan.t.henderson@outlook.com";
   };
   programs.alacritty.enable = true;
-  programs.tmux.enable = true;
+  programs.tmux = {
+    enable = true;
+    extraConfig = ''
+# Remap prefix from 'C-b' to 'C-a'
+      unbind C-b
+      set -g prefix C-a
+      bind-key C-a send-prefix
+
+# Enable colours
+      set -g default-terminal "alacritty"
+      set -ag terminal-overrides ",alacritty:RGB"
+
+# Increase scroll back buffer size
+      set -g history-limit 100000
+
+# Switch panes using Alt-arrow without prefix
+      bind -n M-Left select-pane -L
+      bind -n M-Right select-pane -R
+      bind -n M-Up select-pane -U
+      bind -n M-Down select-pane -D
+
+# Switch panes Vim-like
+      bind h select-pane -L
+      bind l select-pane -R
+      bind k select-pane -U
+      bind j select-pane -D
+
+# Start at index 1
+      set -g base-index 1
+
+# Automatically re-number windows after one of them is closed
+      set -g renumber-windows on
+
+# Split and Creating keeping the current directory
+      bind '|' split-window -h -c '#{pane_current_path}'
+      bind '-' split-window -v -c '#{pane_current_path}'
+      bind c new-window -c '#{pane_current_path}'
+
+# Prefix + r -> Reload config file
+      unbind r
+      bind r source-file ~/.tmux.conf
+
+# Mouse mode (tmux 2.1 and above)
+      set -g mouse on
+
+# Default shell to be zsh
+# set -g default-command /bin/zsh
+
+# Scipt bindings
+      bind-key -r i run-shell "tmux neww ~/.dotfiles/ch.sh"
+
+# Time for escape listening, for hx this is needed.
+      set -sg escape-time 0
+
+      set -g @plugin 'catppuccin/tmux'
+      set -g @plugin 'tmux-plugins/tpm'
+      set -g @catppuccin_flavour 'doomonedark'
+# # show user and host
+      set -g @catppuccin_user "on"
+      set -g @catppuccin_host "on"
+      set -g @catppuccin_date_time "%Y-%m-%d %H:%M"
+#
+# # List of plugins
+      set -g @plugin 'tmux-plugins/tmux-sensible'
+
+      run '~/.tmux/plugins/tpm/tpm'
+    '';
+  };
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;

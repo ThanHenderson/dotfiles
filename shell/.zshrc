@@ -104,13 +104,12 @@ export LANG=en_CA.UTF-8
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias vi="/opt/homebrew/bin/vim"
-alias vim="nvim"
+alias v="nvim"
+alias nv="nvim"
+alias rg="rg --hidden"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
-
-bindkey -v

@@ -1,4 +1,9 @@
 {
+  # Basically, follow setup instructions from here:
+  #   https://web.archive.org/web/20240403211210/https://nixcademy.com/2024/01/15/nix-on-macos/
+  # and here:
+  #   https://davi.sh/til/nix/nix-macos-setup/
+  #
   # To build and install on system:
   # darwin-rebuild switch --flake ~/.config/nix-darwin
   description = "Darwin system flake for 0x6A756E";
