@@ -1,14 +1,14 @@
 # Avoid duplicates in PATH
 typeset -U PATH path
 
-if [ "$(uname)" == "Darwin" ]; then
+if [[ "$(uname)" = "Darwin" ]]; then
 	# xcrun --show-sdk-path
 	[ -d "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk" ] && SDKROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 
 	[ -d "$SDKROOT/usr/include" ] && CPATH="$SDKROOT/usr/include"
 
 	[ -d "/opt/homebrew/bin" ] && path=("/opt/homebrew/bin" $path)
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+elif [[ "$(expr substr $(uname -s) 1 5)" = "Linux" ]]; then
 
 fi
 
