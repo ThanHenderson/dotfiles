@@ -1,70 +1,72 @@
 {
-  // Editor settings
-  "editor.rulers": [
-    80
-  ],
-  "editor.tabSize": 2,
-  
-  // Vim configuration
-  "vim.leader": "<space>",
-  "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
-  "vim.hlsearch": false,
-  "vim.autoindent": true,
-  "vim.easymotion": true,
-  "vim.normalModeKeyBindingsNonRecursive": [
+    // Editor settings
+    "editor.rulers": [
+        80
+    ],
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+
+    // Vim configuration
+    "vim.leader": "<space>",
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": false,
+    "vim.autoindent": true,
+    "vim.easymotion": true,
+
+    "vim.normalModeKeyBindingsNonRecursive": [
     // Delete - No yank
     {
-      "before": ["<leader>", "d"],
-      "after": ["d", "d"]
+        "before": ["<leader>", "d"],
+        "after": ["d", "d"]
     },
     // Delete - Yank
     {
-      "before": ["d"],
-      "after": ["\"", "_", "d"]
+        "before": ["d"],
+        "after": ["\"", "_", "d"]
     },
     {
-      "before": ["K"],
-      "commands": ["lineBreakInsert"],
-      "silent": true
+        "before": ["K"],
+        "commands": ["lineBreakInsert"],
+        "silent": true
     },
     // Keep centre
     {
-      "before": ["<crtl>", "d"],
-      "after": ["<crtl>", "d", "z", "z"]
+        "before": ["<crtl>", "d"],
+        "after": ["<crtl>", "d", "z", "z"]
     },
     {
-      "before": ["<crtl>", "u"],
-      "after": ["<crtl>", "u", "z", "z"]
+        "before": ["<crtl>", "u"],
+        "after": ["<crtl>", "u", "z", "z"]
     },
     {
-      "before": ["n"],
-      "after": ["n", "z", "z", "z", "v"]
+        "before": ["n"],
+        "after": ["n", "z", "z", "z", "v"]
     },
     {
-      "before": ["N"],
-      "after": ["N", "z", "z", "z", "v"]
+        "before": ["N"],
+        "after": ["N", "z", "z", "z", "v"]
     },
-  ],
-  "vim.insertModeKeyBindings": [
+    ],
+    "vim.insertModeKeyBindings": [
     {
-      "before": ["j", "j"],
-      "after": ["<Esc>"]
+        "before": ["j", "j"],
+        "after": ["<Esc>"]
     },
-  ],
-  "vim.visualModeKeyBindingsNonRecursive": [
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
     {
-      "before": ["p"],
-      "after": ["p", "g", "v", "y"]
+        "before": ["p"],
+        "after": ["p", "g", "v", "y"]
     }
-  ],
-  "vim.enableNeovim": true,
-  "vim.neovimUseConfigFile": true,
+    ],
+    "vim.enableNeovim": true,
+    "vim.neovimUseConfigFile": true,
 
-  // Terminal
-  "terminal.external.osxExec": "Terminal.app",
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "settingsSync.ignoredSettings": [],
+    // Terminal
+    "terminal.external.osxExec": "Terminal.app",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "settingsSync.ignoredSettings": [],
 }

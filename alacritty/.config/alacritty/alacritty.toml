@@ -25,6 +25,10 @@ foreground = "#dddddd"
 [env]
 TERM = "alacritty"
 
+[window]
+opacity = 0.80
+blur = true
+
 [font]
 size = 16.0
 

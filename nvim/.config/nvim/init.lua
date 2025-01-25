@@ -105,28 +105,42 @@ require('lazy').setup({
     },
   },
 
-  {
     -- Themes
+  {
     'ellisonleao/gruvbox.nvim',
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'gruvbox'
+      vim.o.background = 'light'
+    end,
+  },
+
+  {
+    "zenbones-theme/zenbones.nvim",
+    -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+    -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+    -- In Vim, compat mode is turned on as Lush only works in Neovim.
+    dependencies = "rktjmp/lush.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      vim.cmd.colorscheme 'zenbones'
       vim.o.background = 'dark'
     end,
   },
 
   {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'gruvbox',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 999,
+    config = function()
+            require("cyberdream").setup({
+                transparent = true,
+            })
+      vim.cmd.colorscheme 'cyberdream'
+      vim.o.background = 'light'
+    end,
   },
 
   {
