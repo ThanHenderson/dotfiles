@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# STALE, REDO
+
 mkdir $HOME/Development
 mkdir $HOME/Git
 

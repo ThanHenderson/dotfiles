@@ -1,0 +1,65 @@
+#!/usr/bin/env zsh
+
+sudo -v
+sudo scutil --set ComputerName "<computer-name>"
+sudo scutil --set HostName "<host-name>"
+sudo scutil --set LocalHostName "<local-host-name>"
+
+# General
+# ===========================================================================
+# Disable automatic capitalization
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+# Disable smart dashes
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+# Disable automatic period substitution
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+# Disable smart quotes
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Trackpad: map bottom right corner to right-click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+# Mouse speed
+defaults write NSGlobalDomain com.apple.mouse.scaling -float "2"
+
+# Increase sound quality for Bluetooth headphones/headsets
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+# Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+# Save screenshots to desktop
+defaults write com.apple.screencapture location -string "${HOME}/Desktop"
+
+# Safari
+# ===========================================================================
+defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+defaults write com.apple.Safari HomePage -string "about:blank"
+
+# Finder
+# ===========================================================================
+defaults write com.apple.finder DisableAllAnimations -bool true
+defaults write com.apple.finder ShowPathBar -bool true
+defaults write com.apple.finder ShowStatusBar -bool true
+# Default search current dir
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+# Avoid creating .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+# Automatically open a new Finder window when a volume is mounted
+defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
+defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
+defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+# Show the ~/Library folder
+chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+
+
+# Kill affected apps/services to apply changes
+killall SystemUIServer
+killall Finder
+killall Safari
