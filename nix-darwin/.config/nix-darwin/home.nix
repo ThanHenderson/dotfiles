@@ -55,7 +55,7 @@
   #  /etc/profiles/per-user/than/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "hx";
   };
 
   # Programs supported as `programs` options.
@@ -68,9 +68,12 @@
       "la" = "eza -la";
     };
   };
-  programs.neovim = {
+  programs.helix = {
     enable = true;
     defaultEditor = true;
+  };
+  programs.neovim = {
+    enable = true;
     vimAlias = true;
     vimdiffAlias = true;
   };
@@ -160,7 +163,6 @@
     nix-direnv.enable = true;
   }; 
   programs.emacs.enable = true;
-  programs.helix.enable = true;
   programs.bat.enable = true;
   programs.gpg.enable = true;
   programs.htop.enable = true;

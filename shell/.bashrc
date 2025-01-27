@@ -102,3 +102,5 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'     # Start underline
 if [ -d "$HOME/scripts" ]; then
     export PATH="$HOME/scripts:$PATH"
 fi
+export PATH=$PATH:/Users/than/bin
+export HELIX_RUNTIME=/Users/than/.config/helix/runtime
