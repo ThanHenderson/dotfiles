@@ -39,7 +39,7 @@ ARCH_PLATFORM=$(detect_platform)
 
 # Download the latest Helix release
 echo "Fetching the latest Helix release..."
-LATEST_VERSION=$(curl -s https://api.github.com/repos/helix-editor/helix/releases/latest | jq -r .tag_name)
+LATEST_VERSION=$(curl -s https://api.github.com/repos/helix-editor/helix/releases/latest | grep '"tag_name"' | sed -E 's/.*"tag_name": *"([^"]+)".*/\1/')
 VERSION_PLATFORM="$LATEST_VERSION-$ARCH_PLATFORM"
 
 DOWNLOAD_URL="https://github.com/helix-editor/helix/releases/download/$LATEST_VERSION/helix-$VERSION_PLATFORM.tar.xz"
