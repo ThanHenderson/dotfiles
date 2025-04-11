@@ -67,25 +67,23 @@ rm -rf helix.tar.xz helix-$VERSION_PLATFORM
 
 # Add ~/bin to PATH if not already present
 if ! echo "$PATH" | grep -q "$INSTALL_DIR"; then
-  echo "Adding $INSTALL_DIR to PATH in ~/.bashrc or ~/.zshrc..."
-  if [[ -f "$HOME/.bashrc" ]]; then
-    echo "export PATH=\$PATH:$INSTALL_DIR" >> "$HOME/.bashrc"
-  fi
-  if [[ -f "$HOME/.zshrc" ]]; then
-    echo "export PATH=\$PATH:$INSTALL_DIR" >> "$HOME/.zshrc"
+  if [[ -f "$HOME/.profile" ]]; then
+    echo "Adding $INSTALL_DIR to PATH in ~/.profile..."
+    echo "export PATH=$INSTALL_DIR:\$PATH" >> "$HOME/.profile"
+  else
+    echo "$INSTALL_DIR not on path. Ensure ~/.profile exists."
   fi
 fi
 
 # Add HELIX_RUNTIME to the environment
-if ! grep -q "HELIX_RUNTIME" "$HOME/.bashrc" && ! grep -q "HELIX_RUNTIME" "$HOME/.zshrc"; then
-  echo "Adding HELIX_RUNTIME to shell configuration..."
-  if [[ -f "$HOME/.bashrc" ]]; then
-    echo "export HELIX_RUNTIME=$RUNTIME_DIR" >> "$HOME/.bashrc"
-  fi
-  if [[ -f "$HOME/.zshrc" ]]; then
-    echo "export HELIX_RUNTIME=$RUNTIME_DIR" >> "$HOME/.zshrc"
+if ! grep -q "HELIX_RUNTIME" "$HOME/.profile"; then
+  if [[ -f "$HOME/.profile" ]]; then
+    echo "Adding HELIX_RUNTIME to shell configuration..."
+    echo "export HELIX_RUNTIME=$RUNTIME_DIR" >> "$HOME/.profile"
+  else
+    echo "HELIX_RUNTIME not exported. Ensure ~/.profile exists."
   fi
 fi
 
-echo "Installation complete! Run 'source ~/.bashrc' or 'source ~/.zshrc' to apply changes, or restart your terminal."
+echo "Installation complete! Run 'source ~/.profile to apply changes, or restart your terminal."
 "$INSTALL_DIR/hx" --version

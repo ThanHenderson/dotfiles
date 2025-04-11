@@ -283,6 +283,14 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- OCaml auto-formatting with ocamlformat on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = {"*.ml", "*.mli"},
+  callback = function()
+    local filename = vim.fn.expand("%:p")
+    vim.cmd("%!ocamlformat --enable-outside-detected-project --name " .. filename .. " -")
+  end,
+})
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {

@@ -17,3 +17,5 @@ fi
 [ -d "$HOME/go" ] && GOPATH="$HOME/go" && path=("$GOPATH/bin" $path)
 
 [ -d "$HOME/.emacs.d/bin" ] && path=("$HOME/.emacs.d/bin" $path)
+
+[ -f ~/.profile ] && source ~/.profile

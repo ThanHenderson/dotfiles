@@ -1,13 +1,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Environment Variables
-export EDITOR=vim
-export VISUAL=$EDITOR
-export HISTSIZE=10000
-export HISTFILESIZE=20000
-export PATH="$HOME/bin:$PATH"
-
 # Aliases
 alias ll='ls -alF --color=auto'
 alias la='ls -A --color=auto'
@@ -97,10 +90,3 @@ export LESS_TERMCAP_se=$'\e[0m'          # End standout-mode
 export LESS_TERMCAP_so=$'\e[1;44;33m'    # Start standout-mode
 export LESS_TERMCAP_ue=$'\e[0m'          # End underline
 export LESS_TERMCAP_us=$'\e[1;4;31m'     # Start underline
-
-# Add Personal Scripts Directory to PATH
-if [ -d "$HOME/scripts" ]; then
-    export PATH="$HOME/scripts:$PATH"
-fi
-export PATH=$PATH:/Users/than/bin
-export HELIX_RUNTIME=/Users/than/.config/helix/runtime
