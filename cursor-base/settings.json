@@ -1,0 +1,120 @@
+{
+    "window.commandCenter": 1,
+
+    // Vim configuration
+    "vim.leader": "<space>",
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": false,
+    "vim.autoindent": true,
+    "vim.easymotion": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // Delete - No yank
+        {
+            "before": [
+                "<leader>",
+                "d",
+                "d"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
+        },
+        // Delete - Yank
+        {
+            "before": [
+                "d"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "lineBreakInsert"
+            ],
+            "silent": true
+        },
+        // Keep centre
+        {
+            "before": [
+                "<crtl>",
+                "d"
+            ],
+            "after": [
+                "<crtl>",
+                "d",
+                "z",
+                "z"
+            ]
+        },
+        {
+            "before": [
+                "<crtl>",
+                "u"
+            ],
+            "after": [
+                "<crtl>",
+                "u",
+                "z",
+                "z"
+            ]
+        },
+        {
+            "before": [
+                "n"
+            ],
+            "after": [
+                "n",
+                "z",
+                "z",
+                "z",
+                "v"
+            ]
+        },
+        {
+            "before": [
+                "N"
+            ],
+            "after": [
+                "N",
+                "z",
+                "z",
+                "z",
+                "v"
+            ]
+        },
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        },
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "p"
+            ],
+            "after": [
+                "p",
+                "g",
+                "v",
+                "y"
+            ]
+        }
+    ],
+    "vim.enableNeovim": true,
+    "vim.neovimUseConfigFile": true,
+}
