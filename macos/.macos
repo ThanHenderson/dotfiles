@@ -18,11 +18,12 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-# Trackpad: map bottom right corner to right-click
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+# Trackpad: map bottom right corner to right-click (built-in + Magic Trackpad)
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+defaults write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+defaults write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+
 # Mouse speed
 defaults write NSGlobalDomain com.apple.mouse.scaling -float "2"
 
@@ -58,8 +59,17 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 # Show the ~/Library folder
 chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
 
+# Dock
+# ===========================================================================
+# Enable autohide with no delay and instant animation
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0
+defaults write com.apple.dock show-recents -bool false
+defaults write com.apple.dock mineffect -string suck # easter
 
 # Kill affected apps/services to apply changes
 killall SystemUIServer
-killall Finder
 killall Safari
+killall Finder
+killall Dock
