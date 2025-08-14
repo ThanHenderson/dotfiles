@@ -69,6 +69,23 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "settingsSync.ignoredSettings": [],
+
+    // --- Single-file focus ---
+    "workbench.editor.showTabs": "single",
+    "workbench.editor.enablePreview": true,        // Open files replace the current one
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+
+    // --- Sidebar / Explorer ---
+    "workbench.startupEditor": "none",
+    "workbench.sideBar.location": "left",
+    "workbench.sideBar.visible": false,            // Start with sidebar closed
+
+    // --- Close behavior ---
+    "workbench.editor.closeOnFileDelete": true,    // Close editor if file deleted
+    "workbench.editor.focusRecentEditorAfterClose": true,
+
+    // --- Minimap ---
+    "editor.minimap.enabled": false,
 }
 
 

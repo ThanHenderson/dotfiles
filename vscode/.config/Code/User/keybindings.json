@@ -8,5 +8,20 @@
     "key": "ctrl+`",
     "command": "-workbench.action.terminal.toggleTerminal",
     "when": "terminal.active"
+  },
+  {
+    "key": "cmd+h",
+    "command": "workbench.panel.chat",
+    "when": "workbench.panel.chat.view.copilot.active"
+  },
+  {
+    "key": "cmd+j",
+    "command": "workbench.action.openPreviousRecentlyUsedEditorInGroup",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+k",
+    "command": "workbench.action.openNextRecentlyUsedEditorInGroup",
+    "when": "editorTextFocus"
   }
 ]
