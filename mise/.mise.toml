@@ -1,0 +1,29 @@
+# mise configuration
+# System and development tool versions
+
+[tools]
+# Programming languages
+node = "20"
+python = "3.11"
+go = "1.21"
+rust = "latest"
+
+# Development utilities
+neovim = "latest"
+tmux = "latest"
+eza = "latest"
+fzf = "latest"
+zoxide = "latest"
+yazi = "latest"
+ripgrep = "latest"
+bat = "latest"
+hugo = "latest"
+gh = "latest"
+
+[tasks.configure-git]
+description = "Configure git with user details"
+run = """
+git config --global user.name "ThanHenderson"
+git config --global user.email "nathan.t.henderson@outlook.com"
+git config --global commit.gpgsign true
+"""

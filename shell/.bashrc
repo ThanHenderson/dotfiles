@@ -90,3 +90,7 @@ export LESS_TERMCAP_se=$'\e[0m'          # End standout-mode
 export LESS_TERMCAP_so=$'\e[1;44;33m'    # Start standout-mode
 export LESS_TERMCAP_ue=$'\e[0m'          # End underline
 export LESS_TERMCAP_us=$'\e[1;4;31m'     # Start underline
+
+if command -v mise &> /dev/null; then
+  eval "$(mise activate bash)"
+fi

@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 
-# STALE, REDO
+# NOTE: This script is marked as STALE and may need updating
+# Review before running on a new system
+
+set -e
 
 mkdir $HOME/Development
 mkdir $HOME/Git

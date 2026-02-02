@@ -9,3 +9,5 @@ if [ -d "$HOME/scripts" ]; then
 fi
 export PATH="/Library/TeX/texbin:$PATH"
 export HELIX_RUNTIME="$HOME/.config/helix/runtime"
+
+export PATH="$HOME/.local/bin:$PATH"

@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -e
 
 # Define installation directories
 INSTALL_DIR="$HOME/bin"
@@ -43,11 +45,17 @@ LATEST_VERSION=$(curl -s https://api.github.com/repos/helix-editor/helix/release
 VERSION_PLATFORM="$LATEST_VERSION-$ARCH_PLATFORM"
 
 DOWNLOAD_URL="https://github.com/helix-editor/helix/releases/download/$LATEST_VERSION/helix-$VERSION_PLATFORM.tar.xz"
-curl -L "$DOWNLOAD_URL" -o helix.tar.xz
+if ! curl -L "$DOWNLOAD_URL" -o helix.tar.xz; then
+    echo "Error: Failed to download Helix"
+    exit 1
+fi
 
 # Extract the downloaded file
 echo "Extracting Helix..."
-tar -xf helix.tar.xz
+if ! tar -xf helix.tar.xz; then
+    echo "Error: Failed to extract Helix archive"
+    exit 1
+fi
 
 # Move the Helix binary to ~/bin
 echo "Installing Helix binary to $INSTALL_DIR..."

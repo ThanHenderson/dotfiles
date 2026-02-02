@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 if ! command -v brew &> /dev/null
 then
     echo "Homebrew not found. Installing Homebrew..."
@@ -13,21 +15,10 @@ brew update
 
 packages=(
     "git"
-    "vim"
-    "nvim"
     "htop"
     "wget"
     "curl"
-    "tmux"
-    "eza"
-    "fzf"
-    "zoxide"
-    "yazi"
     "stow"
-    "ripgrep"
-    "bat"
-    "hugo"
-    "gh"
     "rlwrap"
 )
 
