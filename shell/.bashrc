@@ -94,3 +94,5 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'     # Start underline
 if command -v mise &> /dev/null; then
   eval "$(mise activate bash)"
 fi
+
+export PATH="$HOME/.pixi/bin:$PATH"
