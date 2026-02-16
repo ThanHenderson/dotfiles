@@ -96,3 +96,4 @@ if command -v mise &> /dev/null; then
 fi
 
 export PATH="$HOME/.pixi/bin:$PATH"
+export PATH="$HOME/.pixi/envs/acme/bin:$PATH"

@@ -19,3 +19,5 @@ fi
 [ -d "$HOME/.emacs.d/bin" ] && path=("$HOME/.emacs.d/bin" $path)
 
 [ -f ~/.profile ] && source ~/.profile
+export PATH="$HOME/.pixi/bin:$PATH"
+export PATH="$HOME/.pixi/envs/acme/bin:$PATH"
