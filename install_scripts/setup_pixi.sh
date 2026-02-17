@@ -25,6 +25,10 @@ append_line_once "$HOME/.profile" 'export PATH="$HOME/.pixi/bin:$PATH"'
 append_line_once "$HOME/.profile" 'export PATH="$HOME/.pixi/envs/acme/bin:$PATH"'
 append_line_once "$HOME/.zprofile" 'export PATH="$HOME/.pixi/bin:$PATH"'
 append_line_once "$HOME/.zprofile" 'export PATH="$HOME/.pixi/envs/acme/bin:$PATH"'
+append_line_once "$HOME/.zshrc" 'if command -v fzf &> /dev/null; then source <(fzf --zsh); fi'
+append_line_once "$HOME/.zshrc" 'if command -v zoxide &> /dev/null; then eval "$(zoxide init zsh)"; fi'
+append_line_once "$HOME/.bashrc" 'if command -v fzf &> /dev/null; then source <(fzf --bash); fi'
+append_line_once "$HOME/.bashrc" 'if command -v zoxide &> /dev/null; then eval "$(zoxide init bash)"; fi'
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 DOTFILES_GLOBAL_MANIFEST="$SCRIPT_DIR/../pixi/.pixi/manifests/pixi-global.toml"
