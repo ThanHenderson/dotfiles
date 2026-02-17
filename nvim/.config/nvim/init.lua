@@ -108,10 +108,10 @@ require('lazy').setup({
     -- Themes
   {
     'ellisonleao/gruvbox.nvim',
-    priority = 998,
+    priority = 999,
     config = function()
+      vim.o.background = 'light'
       vim.cmd.colorscheme 'gruvbox'
-      vim.o.background = 'dark'
     end,
   },
 
@@ -122,11 +122,11 @@ require('lazy').setup({
     -- In Vim, compat mode is turned on as Lush only works in Neovim.
     dependencies = "rktjmp/lush.nvim",
     lazy = false,
-    priority = 1000,
+    priority = 998,
     opts = {},
     config = function()
       vim.cmd.colorscheme 'zenbones'
-      vim.o.background = 'dark'
+      vim.o.background = 'light'
     end,
   },
 

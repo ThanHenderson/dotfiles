@@ -28,6 +28,8 @@ link_once "$DOTFILES_DIR/shell/.zshrc" "$HOME/.zshrc"
 link_once "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
 link_once "$DOTFILES_DIR/vim/.vimrc" "$HOME/.vimrc"
 link_once "$DOTFILES_DIR/p10k/.p10k.zsh" "$HOME/.p10k.zsh"
+link_once "$DOTFILES_DIR/.codex" "$HOME/.codex"
+link_once "$DOTFILES_DIR/.claude" "$HOME/.claude"
 
 link_once "$DOTFILES_DIR/nvim/.config/nvim" "$HOME/.config/nvim"
 link_once "$DOTFILES_DIR/alacritty/.config/alacritty" "$HOME/.config/alacritty"
