@@ -1,6 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 # Install mise
 if ! command -v mise &> /dev/null
@@ -39,9 +39,9 @@ EOF
 fi
 
 # Install mise tools
-if [ -f $HOME/.mise.toml ]; then
+if [ -f "$HOME/.mise.toml" ]; then
     echo "Trusting mise configuration..."
-    mise trust $HOME/.mise.toml
+    mise trust "$HOME/.mise.toml"
     echo "Installing mise tools..."
     mise install
 fi

@@ -2,7 +2,7 @@
 
 set -eu
 
-if ! command -v pixi &> /dev/null; then
+if ! command -v pixi >/dev/null 2>&1; then
     echo "Installing pixi..."
     curl -fsSL https://pixi.sh/install.sh | bash
 else
@@ -10,6 +10,9 @@ else
 fi
 
 export PATH="$HOME/.pixi/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export UV_TOOL_BIN_DIR="$HOME/.local/bin"
+export UV_TOOL_DIR="$HOME/.local/share/uv/tools"
 
 append_line_once_regex() {
     file="$1"
@@ -22,6 +25,8 @@ append_line_once_regex() {
     fi
 }
 
+touch "$HOME/.profile"
+
 append_line_once_regex "$HOME/.profile" \
     'export PATH="$HOME/.pixi/bin:$PATH"' \
     '\.pixi/bin'
@@ -30,10 +35,29 @@ append_line_once_regex "$HOME/.profile" \
     'export PATH="$HOME/.pixi/envs/acme/bin:$PATH"' \
     '\.pixi/envs/acme/bin'
 
+append_line_once_regex "$HOME/.profile" \
+    'export PATH="$HOME/.local/bin:$PATH"' \
+    '\.local/bin'
+
+append_line_once_regex "$HOME/.profile" \
+    'export UV_TOOL_BIN_DIR="$HOME/.local/bin"' \
+    'UV_TOOL_BIN_DIR'
+
+append_line_once_regex "$HOME/.profile" \
+    'export UV_TOOL_DIR="$HOME/.local/share/uv/tools"' \
+    'UV_TOOL_DIR'
+
 append_line_once_regex "$HOME/.zshrc" 'if command -v fzf &> /dev/null; then source <(fzf --zsh); fi' 'fzf[[:space:]]+--zsh'
 append_line_once_regex "$HOME/.zshrc" 'if command -v zoxide &> /dev/null; then eval "$(zoxide init zsh)"; fi' 'zoxide[[:space:]]+init[[:space:]]+zsh'
 append_line_once_regex "$HOME/.bashrc" 'if command -v fzf &> /dev/null; then source <(fzf --bash); fi' 'fzf[[:space:]]+--bash'
 append_line_once_regex "$HOME/.bashrc" 'if command -v zoxide &> /dev/null; then eval "$(zoxide init bash)"; fi' 'zoxide[[:space:]]+init[[:space:]]+bash'
+
+if [ -f "$HOME/.zprofile" ] && ! grep -Eq '(^|/)\.profile|source[[:space:]]+.*profile|\.[[:space:]]+.*profile' "$HOME/.zprofile"; then
+    echo "Warning: ~/.zprofile exists but does not appear to source ~/.profile."
+    echo "         zsh login shells may not pick up pixi/uv paths automatically."
+fi
+
+mkdir -p "$HOME/.local/bin" "$HOME/.local/share/uv/tools"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 DOTFILES_GLOBAL_MANIFEST="$SCRIPT_DIR/../pixi/.pixi/manifests/pixi-global.toml"

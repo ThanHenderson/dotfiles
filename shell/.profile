@@ -2,6 +2,8 @@ export EDITOR=vim
 export VISUAL="$EDITOR"
 export HISTSIZE=10000
 export HISTFILESIZE=20000
+export UV_TOOL_BIN_DIR="$HOME/.local/bin"
+export UV_TOOL_DIR="$HOME/.local/share/uv/tools"
 
 prepend_path_if_dir() {
     dir="$1"
