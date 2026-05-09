@@ -87,6 +87,15 @@ install_ai_clis() {
     prompt_install_npm_cli "OpenCode" "opencode-ai" "opencode"
 }
 
+link_opencode_config() {
+    if command -v opencode >/dev/null 2>&1; then
+        mkdir -p "$HOME/.config"
+        link_once "$DOTFILES_DIR/opencode/.config/opencode" "$HOME/.config/opencode"
+    else
+        echo "Skipping opencode config; opencode is not available."
+    fi
+}
+
 sync_nvim_plugins() {
     if ! command -v nvim >/dev/null 2>&1; then
         return 0
@@ -196,6 +205,7 @@ fi
 
 sync_nvim_plugins
 install_ai_clis
+link_opencode_config
 
 echo ""
 echo "Bringup complete!"

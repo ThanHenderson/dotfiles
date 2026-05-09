@@ -32,6 +32,7 @@ link_once "$DOTFILES_DIR/.codex" "$HOME/.codex"
 link_once "$DOTFILES_DIR/.claude" "$HOME/.claude"
 
 link_once "$DOTFILES_DIR/nvim/.config/nvim" "$HOME/.config/nvim"
+link_once "$DOTFILES_DIR/opencode/.config/opencode" "$HOME/.config/opencode"
 link_once "$DOTFILES_DIR/alacritty/.config/alacritty" "$HOME/.config/alacritty"
 link_once "$DOTFILES_DIR/htop/.config/htop" "$HOME/.config/htop"
 link_once "$DOTFILES_DIR/helix/.config/helix" "$HOME/.config/helix"
