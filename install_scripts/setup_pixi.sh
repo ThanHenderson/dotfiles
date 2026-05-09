@@ -3,6 +3,19 @@
 set -eu
 
 if ! command -v pixi >/dev/null 2>&1; then
+    if ! command -v curl >/dev/null 2>&1; then
+        echo "Error: curl is required to install pixi."
+        case "$(uname -s)" in
+            Darwin)
+                echo "Install Xcode command line tools or Homebrew curl, then rerun this script."
+                ;;
+            Linux)
+                echo "Install curl with your system package manager, then rerun this script."
+                ;;
+        esac
+        exit 1
+    fi
+
     echo "Installing pixi..."
     curl -fsSL https://pixi.sh/install.sh | bash
 else
@@ -13,6 +26,7 @@ export PATH="$HOME/.pixi/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export UV_TOOL_BIN_DIR="$HOME/.local/bin"
 export UV_TOOL_DIR="$HOME/.local/share/uv/tools"
+export NPM_CONFIG_PREFIX="$HOME/.local"
 
 append_line_once_regex() {
     file="$1"
@@ -46,6 +60,10 @@ append_line_once_regex "$HOME/.profile" \
 append_line_once_regex "$HOME/.profile" \
     'export UV_TOOL_DIR="$HOME/.local/share/uv/tools"' \
     'UV_TOOL_DIR'
+
+append_line_once_regex "$HOME/.profile" \
+    'export NPM_CONFIG_PREFIX="$HOME/.local"' \
+    'NPM_CONFIG_PREFIX'
 
 append_line_once_regex "$HOME/.zshrc" 'if command -v fzf &> /dev/null; then source <(fzf --zsh); fi' 'fzf[[:space:]]+--zsh'
 append_line_once_regex "$HOME/.zshrc" 'if command -v zoxide &> /dev/null; then eval "$(zoxide init zsh)"; fi' 'zoxide[[:space:]]+init[[:space:]]+zsh'

@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
   end,
 })
 
-vim.pack.add({
+local plugin_specs = {
   gh('tpope/vim-fugitive'),
   gh('tpope/vim-rhubarb'),
   gh('tpope/vim-sleuth'),
@@ -56,8 +56,41 @@ vim.pack.add({
   gh('nvim-treesitter/nvim-treesitter'),
   gh('rust-lang/rust.vim'),
   gh('NvChad/nvterm'),
-}, { load = true, confirm = false })
+}
 
+local pack_lockfile = vim.fn.stdpath('config') .. '/nvim-pack-lock.json'
+local function add_plugins()
+  local had_lockfile = vim.fn.filereadable(pack_lockfile) == 1
+  local lockfile_lines = had_lockfile and vim.fn.readfile(pack_lockfile) or nil
+  local ok, err = pcall(vim.pack.add, plugin_specs, { load = true, confirm = false })
+
+  if not ok then
+    if had_lockfile then
+      vim.fn.writefile(lockfile_lines, pack_lockfile)
+    elseif vim.fn.filereadable(pack_lockfile) == 1 then
+      vim.fn.delete(pack_lockfile)
+    end
+  end
+
+  return ok, err
+end
+
+local plugins_ready, pack_error = add_plugins()
+if not plugins_ready then
+  vim.schedule(function()
+    vim.notify('vim.pack bootstrap failed; run :PackSync when network is available.\n' .. pack_error, vim.log.levels.WARN)
+  end)
+end
+
+vim.api.nvim_create_user_command('PackSync', function()
+  local ok, err = add_plugins()
+  if not ok then
+    error(err)
+  end
+  vim.pack.update(nil, { force = true })
+end, { desc = 'Install and update native vim.pack plugins' })
+
+if plugins_ready then
 require('fidget').setup({})
 
 require('lazydev').setup({
@@ -145,6 +178,7 @@ require("nvterm").setup({
     auto_insert = true,
   },
 })
+end
 
 -- [[ Setting options ]]
 -- Set highlight on search
@@ -235,6 +269,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+if plugins_ready then
 -- [[ Configure Telescope ]]
 require('telescope').setup {
   defaults = {
@@ -508,3 +543,4 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+end

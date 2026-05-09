@@ -17,6 +17,97 @@ link_once() {
     ln -s "$src" "$dest"
 }
 
+install_npm_cli() {
+    package="$1"
+    binary="$2"
+    pixi_npm="$HOME/.pixi/envs/acme/bin/npm"
+
+    if command -v "$binary" >/dev/null 2>&1; then
+        echo "$binary is already installed."
+        return 0
+    fi
+
+    if [ ! -x "$pixi_npm" ]; then
+        echo "Skipping $package; pixi npm is not available at $pixi_npm."
+        return 0
+    fi
+
+    echo "Installing $package with pixi npm..."
+    NPM_CONFIG_PREFIX="$HOME/.local" "$pixi_npm" install -g "$package"
+}
+
+prompt_install_npm_cli() {
+    name="$1"
+    package="$2"
+    binary="$3"
+
+    printf "\nInstall %s? (y/N): " "$name"
+    read -r install_cli
+    case "$install_cli" in
+        y|Y|yes|YES)
+            install_npm_cli "$package" "$binary"
+            ;;
+        *)
+            echo "Skipping $name."
+            ;;
+    esac
+}
+
+prompt_install_cursor_cli() {
+    printf "\nInstall Cursor CLI? (y/N): "
+    read -r install_cursor
+    case "$install_cursor" in
+        y|Y|yes|YES)
+            if command -v cursor-agent >/dev/null 2>&1; then
+                echo "cursor-agent is already installed."
+            elif ! command -v curl >/dev/null 2>&1; then
+                echo "Skipping Cursor CLI; curl is not available."
+            else
+                echo "Installing Cursor CLI..."
+                cursor_installer="$(mktemp)"
+                curl https://cursor.com/install -fsS -o "$cursor_installer"
+                bash "$cursor_installer"
+                rm -f "$cursor_installer"
+            fi
+            ;;
+        *)
+            echo "Skipping Cursor CLI."
+            ;;
+    esac
+}
+
+install_ai_clis() {
+    mkdir -p "$HOME/.local/bin"
+    export PATH="$HOME/.local/bin:$HOME/.pixi/envs/acme/bin:$PATH"
+    export NPM_CONFIG_PREFIX="$HOME/.local"
+
+    prompt_install_cursor_cli
+    prompt_install_npm_cli "Claude Code" "@anthropic-ai/claude-code" "claude"
+    prompt_install_npm_cli "Codex" "@openai/codex" "codex"
+    prompt_install_npm_cli "OpenCode" "opencode-ai" "opencode"
+}
+
+sync_nvim_plugins() {
+    if ! command -v nvim >/dev/null 2>&1; then
+        return 0
+    fi
+
+    printf "\nSync Neovim plugins now? (Y/n): "
+    read -r sync_nvim
+    case "$sync_nvim" in
+        n|N|no|NO)
+            ;;
+        *)
+            echo "Syncing Neovim plugins..."
+            if nvim --headless '+PackSync' '+qa'; then
+                echo "Neovim plugins synced."
+            else
+                echo "Warning: Neovim plugin sync failed. Run :PackSync later from Neovim."
+            fi
+            ;;
+    esac
+}
+
 echo "Running setup_pixi.sh..."
 if [ -f "$SCRIPT_DIR/setup_pixi.sh" ]; then
     bash "$SCRIPT_DIR/setup_pixi.sh"
@@ -102,6 +193,9 @@ if command -v git >/dev/null 2>&1; then
             ;;
     esac
 fi
+
+sync_nvim_plugins
+install_ai_clis
 
 echo ""
 echo "Bringup complete!"
