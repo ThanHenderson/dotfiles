@@ -1,4 +1,10 @@
+.DS_Store
 .config/gh
 .doom.d/custom.el
 .bak/
+*.bak
+*.swp
+*.swo
+*.tmp
+bak
 lazy-lock.json
