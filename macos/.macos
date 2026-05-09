@@ -1,9 +1,47 @@
 #!/usr/bin/env zsh
 
+set -eu
+
+if [[ "$(uname -s)" != "Darwin" ]]; then
+    echo "This script only applies to macOS."
+    exit 0
+fi
+
+set_hostname_if_present() {
+    local label="$1"
+    local value="$2"
+    local command_name="$3"
+
+    if [[ -n "$value" ]]; then
+        sudo scutil --set "$command_name" "$value"
+        echo "Set $label to $value"
+    fi
+}
+
 sudo -v
-sudo scutil --set ComputerName "<computer-name>"
-sudo scutil --set HostName "<host-name>"
-sudo scutil --set LocalHostName "<local-host-name>"
+
+if [[ -n "${COMPUTER_NAME:-}" || -n "${HOST_NAME:-}" || -n "${LOCAL_HOST_NAME:-}" ]]; then
+    set_hostname_if_present "ComputerName" "${COMPUTER_NAME:-}" "ComputerName"
+    set_hostname_if_present "HostName" "${HOST_NAME:-}" "HostName"
+    set_hostname_if_present "LocalHostName" "${LOCAL_HOST_NAME:-}" "LocalHostName"
+else
+    printf "Configure macOS computer/host names now? (y/N): "
+    read -r configure_names
+    case "$configure_names" in
+        y|Y|yes|YES)
+            printf "ComputerName: "
+            read -r computer_name
+            printf "HostName: "
+            read -r host_name
+            printf "LocalHostName: "
+            read -r local_host_name
+
+            set_hostname_if_present "ComputerName" "$computer_name" "ComputerName"
+            set_hostname_if_present "HostName" "$host_name" "HostName"
+            set_hostname_if_present "LocalHostName" "$local_host_name" "LocalHostName"
+            ;;
+    esac
+fi
 
 # General
 # ===========================================================================
@@ -57,7 +95,8 @@ defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 # Show the ~/Library folder
-chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+chflags nohidden "$HOME/Library" || true
+xattr -d com.apple.FinderInfo "$HOME/Library" 2>/dev/null || true
 
 # Dock
 # ===========================================================================
@@ -69,7 +108,7 @@ defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock mineffect -string suck # easter
 
 # Kill affected apps/services to apply changes
-killall SystemUIServer
-killall Safari
-killall Finder
-killall Dock
+killall SystemUIServer 2>/dev/null || true
+killall Safari 2>/dev/null || true
+killall Finder 2>/dev/null || true
+killall Dock 2>/dev/null || true

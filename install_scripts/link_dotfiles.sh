@@ -105,3 +105,7 @@ link_once "$DOTFILES_DIR/alacritty/.config/alacritty" "$HOME/.config/alacritty"
 link_once "$DOTFILES_DIR/htop/.config/htop" "$HOME/.config/htop"
 link_once "$DOTFILES_DIR/helix/.config/helix" "$HOME/.config/helix"
 link_once "$DOTFILES_DIR/vscode/.config/Code" "$HOME/.config/Code"
+
+if [ "$(uname -s)" = "Darwin" ] && command -v aerospace >/dev/null 2>&1; then
+  link_once "$DOTFILES_DIR/aerospace/.aerospace.toml" "$HOME/.aerospace.toml"
+fi
