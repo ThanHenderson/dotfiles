@@ -1,3 +1,4 @@
 .config/gh
 .doom.d/custom.el
+.bak/
 lazy-lock.json
