@@ -1,10 +1,18 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+[ -f "$HOME/.profile" ] && source "$HOME/.profile"
+
 # Aliases
-alias ll='ls -alF --color=auto'
-alias la='ls -A --color=auto'
-alias l='ls -CF --color=auto'
+if ls --color=auto -d . >/dev/null 2>&1; then
+    alias ll='ls -alF --color=auto'
+    alias la='ls -A --color=auto'
+    alias l='ls -CF --color=auto'
+else
+    alias ll='ls -alF'
+    alias la='ls -A'
+    alias l='ls -CF'
+fi
 alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h'
@@ -17,7 +25,7 @@ alias gc='git commit -m'
 # Quick navigation to parent directories
 up() {
     local d=""
-    limit=${1:-1}
+    local limit="${1:-1}"
     for ((i=1; i<=limit; i++)); do
         d="../$d"
     done
@@ -69,7 +77,13 @@ exit_status_symbol() {
 }
 
 # Set the PS1 variable for a nice prompt
-export PS1="\[$(tput setaf 243)\]\u\[$(tput setaf 245)\]@\[$(tput setaf 249)\]\h \[$(tput setaf 254)\]\w \$(exit_status_symbol) \$(parse_git_branch)\n\[$(tput sgr0)\]$ "
+prompt_user_color="$(tput setaf 243)"
+prompt_host_color="$(tput setaf 245)"
+prompt_machine_color="$(tput setaf 249)"
+prompt_path_color="$(tput setaf 254)"
+prompt_reset="$(tput sgr0)"
+PS1="\[$prompt_user_color\]\u\[$prompt_host_color\]@\[$prompt_machine_color\]\h \[$prompt_path_color\]\w \$(exit_status_symbol) \$(parse_git_branch)\n\[$prompt_reset\]$ "
+export PS1
 
 # Enable Bash Completion
 if [ -f /etc/bash_completion ]; then
@@ -80,7 +94,7 @@ fi
 
 # History Settings
 shopt -s histappend         # Append to history file, don't overwrite it
-export PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; history -n${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
 # Colored Man Pages
 export LESS_TERMCAP_mb=$'\e[1;31m'       # Start blink
@@ -95,7 +109,8 @@ if command -v mise &> /dev/null; then
   eval "$(mise activate bash)"
 fi
 
-export PATH="$HOME/.pixi/bin:$PATH"
-export PATH="$HOME/.pixi/envs/acme/bin:$PATH"
-if command -v fzf &> /dev/null; then source <(fzf --bash); fi
+if command -v fzf &> /dev/null; then
+  # shellcheck disable=SC1090
+  source <(fzf --bash)
+fi
 if command -v zoxide &> /dev/null; then eval "$(zoxide init bash)"; fi

@@ -8,6 +8,8 @@ fi
 #If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+[ -f "$HOME/.profile" ] && source "$HOME/.profile"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -79,7 +81,9 @@ HYPHEN_INSENSITIVE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
-source $ZSH/oh-my-zsh.sh
+if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
+  source "$ZSH/oh-my-zsh.sh"
+fi
 
 # User configuration
 export LANG=en_CA.UTF-8
@@ -118,7 +122,7 @@ if command -v rg &> /dev/null; then
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
 
 # opencode
 if [[ -d "$HOME/.opencode/bin" ]]; then

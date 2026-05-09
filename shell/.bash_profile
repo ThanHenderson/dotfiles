@@ -1,1 +1,5 @@
-[ -f ~/.profile ] && source ~/.profile
+[ -f "$HOME/.profile" ] && source "$HOME/.profile"
+
+case $- in
+    *i*) [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc" ;;
+esac
