@@ -3,11 +3,23 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+(require 'subr-x)
+
+(defun than/non-empty-string-or-nil (value)
+  (let ((trimmed (string-trim (or value ""))))
+    (unless (string-empty-p trimmed)
+      trimmed)))
+
+(defun than/git-config-or-nil (key)
+  (than/non-empty-string-or-nil
+   (shell-command-to-string (concat "git config --global " key " 2>/dev/null"))))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "Nathan Henderson"
-      user-mail-address "nathan.t.henderson@outlook.com")
+(setq user-full-name (or (than/non-empty-string-or-nil (getenv "DOOM_USER_FULL_NAME"))
+                         (than/git-config-or-nil "user.name"))
+      user-mail-address (or (than/non-empty-string-or-nil (getenv "DOOM_USER_EMAIL"))
+                            (than/git-config-or-nil "user.email")))
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -46,7 +58,9 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(defvar than/org-directory (expand-file-name "~/org/"))
+(when (file-directory-p than/org-directory)
+  (setq org-directory than/org-directory))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -94,12 +108,15 @@
       org-journal-date-format "%A, %Y-%m-%d"
       org-journal-file-format "%Y-%m-%d.org")
 
-(setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
+(when (file-directory-p than/org-directory)
+  (setq org-agenda-files (directory-files-recursively than/org-directory "\\.org$")))
 
 ;; org roam
 (after! org
-        (setq org-roam-directory "~/Documents/org/roam/")
-        (setq org-roam-index-file "~/Documents/org/roam/index.org"))
+  (let ((roam-directory (expand-file-name "~/Documents/org/roam/")))
+    (when (file-directory-p roam-directory)
+      (setq org-roam-directory roam-directory
+            org-roam-index-file (expand-file-name "index.org" roam-directory)))))
 
 ;; Mappings
 (map! :leader "e h" #'org-html-export-to-html)

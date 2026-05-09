@@ -191,7 +191,9 @@ vim.wo.number = true
 vim.o.mouse = 'a'
 
 -- Sync clipboard between OS and Neovim.
-vim.o.clipboard = 'unnamedplus'
+if vim.fn.has('clipboard') == 1 then
+  vim.o.clipboard = 'unnamedplus'
+end
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -467,7 +469,9 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
+  ensure_installed = vim.tbl_filter(function(server)
+    return server ~= 'rust_analyzer'
+  end, vim.tbl_keys(servers)),
   automatic_enable = false,
 }
 

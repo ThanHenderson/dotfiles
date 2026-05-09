@@ -44,11 +44,11 @@
         // Keep centre
         {
             "before": [
-                "<crtl>",
+                "<ctrl>",
                 "d"
             ],
             "after": [
-                "<crtl>",
+                "<ctrl>",
                 "d",
                 "z",
                 "z"
@@ -56,11 +56,11 @@
         },
         {
             "before": [
-                "<crtl>",
+                "<ctrl>",
                 "u"
             ],
             "after": [
-                "<crtl>",
+                "<ctrl>",
                 "u",
                 "z",
                 "z"

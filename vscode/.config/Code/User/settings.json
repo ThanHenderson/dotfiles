@@ -32,12 +32,12 @@
     },
     // Keep centre
     {
-        "before": ["<crtl>", "d"],
-        "after": ["<crtl>", "d", "z", "z"]
+        "before": ["<ctrl>", "d"],
+        "after": ["<ctrl>", "d", "z", "z"]
     },
     {
-        "before": ["<crtl>", "u"],
-        "after": ["<crtl>", "u", "z", "z"]
+        "before": ["<ctrl>", "u"],
+        "after": ["<ctrl>", "u", "z", "z"]
     },
     {
         "before": ["n"],
@@ -87,6 +87,5 @@
     // --- Minimap ---
     "editor.minimap.enabled": false,
 }
-
 
 
