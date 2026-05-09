@@ -37,7 +37,7 @@ set autoindent      " Automatically indent new lines
 
 set nu             " Show absolute line number for the current line
 set wrap           " Enable line wrapping
-set scrolloff=2     " Keep 2 lines of context when scrolling
+set scrolloff=5     " Keep context when scrolling
 set sidescrolloff=5 " Keep 5 columns of context when scrolling horizontally
 set signcolumn=yes  " Always show the sign column
 set colorcolumn=80  " Highlight column 80 for line length
@@ -74,7 +74,10 @@ set path+=**
 set noswapfile
 set nobackup
 
-" Set up undo directory and enable undofile
+" Set up undo directory and enable persistent undo when possible
+if !isdirectory(expand('~/.vim/undodir'))
+    call mkdir(expand('~/.vim/undodir'), 'p')
+endif
 set undodir=~/.vim/undodir//
 set undofile
 
@@ -143,15 +146,20 @@ set wildmode=longest,list,full
 "   Swap and Backup Files Location
 " ============================
 
-" Set the directory for swap files
-set directory=~/.vim/swap//
+" Swap files are disabled above; keep swap directory unset.
 
 " ============================
 "   Clipboard Integration
 " ============================
 
-" Use the system clipboard for copy and paste operations
-set clipboard=unnamed
+" Use the system clipboard when this Vim build supports it.
+if has('clipboard')
+    if has('unnamedplus')
+        set clipboard=unnamedplus
+    else
+        set clipboard=unnamed
+    endif
+endif
 
 " ============================
 "   Status Line Settings
