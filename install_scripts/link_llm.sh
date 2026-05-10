@@ -44,7 +44,9 @@ backup_path_for() {
     backup_path="$BACKUP_ROOT/$rel_path.$suffix"
     suffix=$((suffix + 1))
   done
-  printf '%s' "$backup_path"
+
+  BACKUP_PATH="$backup_path"
+  BACKUP_REL_PATH="$rel_path"
 }
 
 link_once() {
@@ -78,11 +80,11 @@ link_once() {
         ;;
     esac
 
-    backup_path="$(backup_path_for "$dest")"
-    mkdir -p "$(dirname "$backup_path")"
-    mv "$dest" "$backup_path"
-    printf '%s\n' "$rel_path" >> "$BACKUP_ROOT/.backup-manifest"
-    echo "Backed up $dest to $backup_path"
+    backup_path_for "$dest"
+    mkdir -p "$(dirname "$BACKUP_PATH")"
+    mv "$dest" "$BACKUP_PATH"
+    printf '%s\n' "$BACKUP_REL_PATH" >> "$BACKUP_ROOT/.backup-manifest"
+    echo "Backed up $dest to $BACKUP_PATH"
   fi
 
   ln -s "$src" "$dest"
