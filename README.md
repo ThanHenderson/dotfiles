@@ -22,6 +22,7 @@ sh install_scripts/bringup.sh
 - Git configuration is optional and prompt-driven.
 - Neovim plugin sync is optional and only runs when `nvim` is available.
 - AI CLI installation is optional for Cursor, Claude Code, Codex, and OpenCode.
+- LLM configuration is sourced from `llm/`, linked into each tool's expected home directory, and renders tool-specific agent files during bringup.
 
 ## Linking And Backups
 
@@ -56,9 +57,7 @@ ${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles/backups/<timestamp>/
 | `p10k/` | Powerlevel10k prompt configuration. |
 | `pixi/` | Pixi global tool manifest. |
 | `mise/` | Optional Mise configuration. |
-| `.claude/` | Claude agent definitions. |
-| `.codex/` | Codex global instructions. |
-| `opencode/` | OpenCode global config skeleton. |
+| `llm/` | Shared LLM instructions, skills, agents, and tool-specific targets for OpenCode, Claude Code, and Codex. |
 | `macos/` | Optional macOS defaults script. |
 | `aerospace/` | Optional AeroSpace window-manager config. |
 | `install_scripts/` | Bringup, linking, Pixi setup, and legacy setup scripts. |
@@ -78,3 +77,12 @@ Fedora setup is legacy and intentionally guarded. Do not treat it as a current f
 - Prefer optional or platform-guarded linking for platform-specific tools.
 - Keep generated files, caches, secrets, credentials, and machine-local state out of git.
 - Validate the config with the tool's checker when one is available.
+
+## LLM Config
+
+The canonical AI setup lives in `llm/` rather than tool-native home-directory names.
+
+- Shared skills in `llm/skills/` are linked to OpenCode, Claude Code, and Codex-compatible skill locations.
+- Canonical agents in `llm/agents/` are rendered into OpenCode, Claude Code, and Codex-native agent files by `llm/scripts/render-agent-targets.sh`.
+- OpenCode slash commands in `llm/targets/opencode/commands/` are thin shims over shared skills.
+- Codex uses shared skills directly via skill invocation, such as `$review` or `$commit`.

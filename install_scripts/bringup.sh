@@ -154,12 +154,15 @@ install_ai_clis() {
     prompt_install_npm_cli "OpenCode" "opencode-ai" "opencode"
 }
 
-link_opencode_config() {
-    if command -v opencode >/dev/null 2>&1; then
-        mkdir -p "$HOME/.config"
-        link_once "$DOTFILES_DIR/opencode/.config/opencode" "$HOME/.config/opencode"
+link_llm_config() {
+    if command -v opencode >/dev/null 2>&1 || command -v claude >/dev/null 2>&1 || command -v codex >/dev/null 2>&1; then
+        if [ -f "$SCRIPT_DIR/link_llm.sh" ]; then
+            bash "$SCRIPT_DIR/link_llm.sh"
+        else
+            echo "Warning: link_llm.sh not found at $SCRIPT_DIR/link_llm.sh"
+        fi
     else
-        echo "Skipping opencode config; opencode is not available."
+        echo "Skipping LLM config; OpenCode, Claude Code, and Codex are not available."
     fi
 }
 
@@ -272,7 +275,7 @@ fi
 
 sync_nvim_plugins
 install_ai_clis
-link_opencode_config
+link_llm_config
 
 echo ""
 echo "Bringup complete!"

@@ -96,15 +96,16 @@ link_once "$DOTFILES_DIR/shell/.zshrc" "$HOME/.zshrc"
 link_once "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
 link_once "$DOTFILES_DIR/vim/.vimrc" "$HOME/.vimrc"
 link_once "$DOTFILES_DIR/p10k/.p10k.zsh" "$HOME/.p10k.zsh"
-link_once "$DOTFILES_DIR/.codex" "$HOME/.codex"
-link_once "$DOTFILES_DIR/.claude" "$HOME/.claude"
 
 link_once "$DOTFILES_DIR/nvim/.config/nvim" "$HOME/.config/nvim"
-link_once "$DOTFILES_DIR/opencode/.config/opencode" "$HOME/.config/opencode"
 link_once "$DOTFILES_DIR/alacritty/.config/alacritty" "$HOME/.config/alacritty"
 link_once "$DOTFILES_DIR/htop/.config/htop" "$HOME/.config/htop"
 link_once "$DOTFILES_DIR/helix/.config/helix" "$HOME/.config/helix"
 link_once "$DOTFILES_DIR/vscode/.config/Code" "$HOME/.config/Code"
+
+if [ -f "$SCRIPT_DIR/link_llm.sh" ]; then
+  bash "$SCRIPT_DIR/link_llm.sh"
+fi
 
 if [ "$(uname -s)" = "Darwin" ] && command -v aerospace >/dev/null 2>&1; then
   link_once "$DOTFILES_DIR/aerospace/.aerospace.toml" "$HOME/.aerospace.toml"

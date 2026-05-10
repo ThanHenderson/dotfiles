@@ -1,13 +1,12 @@
-# Codex Instructions
-
-These are global defaults for working in this dotfiles repository and other local projects.
+# Global LLM Instructions
 
 ## Working Style
 
-- Inspect the relevant files before changing code or configuration.
+- Inspect relevant files before changing code or configuration.
 - Prefer the smallest correct change over broad rewrites.
-- Preserve existing conventions unless there is a clear reason to change them.
-- Explain important tradeoffs, blockers, and verification results concisely.
+- Preserve existing conventions unless there is a concrete reason to change them.
+- Be autonomous for requested tasks: diagnose, implement, verify, and report outcomes.
+- Keep responses concise and focused on decisions, changes, blockers, and verification.
 
 ## Safety
 
