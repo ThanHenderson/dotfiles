@@ -77,6 +77,7 @@ link_once() {
 
     mkdir -p "$(dirname "$backup_path")"
     mv "$dest" "$backup_path"
+    printf '%s\n' "$rel_path" >> "$BACKUP_ROOT/.backup-manifest"
     echo "Backed up $dest to $backup_path"
     ln -s "$src" "$dest"
     echo "Linked $dest -> $src"

@@ -36,6 +36,17 @@ Backups are written under:
 ${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles/backups/<timestamp>/
 ```
 
+Backups can be inspected and restored with:
+
+```sh
+sh install_scripts/restore_backup.sh list
+sh install_scripts/restore_backup.sh show latest
+sh install_scripts/restore_backup.sh restore latest --dry-run
+sh install_scripts/restore_backup.sh restore latest
+```
+
+Restore copies files out of the backup snapshot and keeps the original backup intact. Existing real files are not silently overwritten; they are backed up under `${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles/restore-backups/` before replacement.
+
 ## Package Strategy
 
 - Pixi is the default path for shared tools, runtimes, editors, language servers, and common CLI utilities.

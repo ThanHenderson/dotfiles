@@ -81,6 +81,7 @@ link_once() {
     backup_path="$(backup_path_for "$dest")"
     mkdir -p "$(dirname "$backup_path")"
     mv "$dest" "$backup_path"
+    printf '%s\n' "$rel_path" >> "$BACKUP_ROOT/.backup-manifest"
     echo "Backed up $dest to $backup_path"
   fi
 
