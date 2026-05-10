@@ -5,6 +5,12 @@
 
 set -e
 
+if [ "${RUN_LEGACY_FEDORA_SETUP:-}" != "1" ]; then
+    echo "setup_fedora.sh is legacy and unsafe to run by default."
+    echo "Review and modernize it before use, or rerun with RUN_LEGACY_FEDORA_SETUP=1."
+    exit 1
+fi
+
 mkdir $HOME/Development
 mkdir $HOME/Git
 
