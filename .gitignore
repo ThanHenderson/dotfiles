@@ -2,6 +2,9 @@
 .config/gh
 .doom.d/custom.el
 doom/.config/doom/custom.el
+.claude/
+.codex/
+opencode/
 .bak/
 *.bak
 *.swp

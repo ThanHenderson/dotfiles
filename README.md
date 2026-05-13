@@ -26,7 +26,7 @@ sh install_scripts/bringup.sh
 
 ## Linking And Backups
 
-Dotfile linking uses manual symlinks through `link_once` in `install_scripts/link_dotfiles.sh` and `install_scripts/bringup.sh`.
+Dotfile linking uses manual symlinks through the shared `link_once` helper in `install_scripts/lib/linking.sh`.
 
 Existing files are skipped by default. If interactive replacement is enabled, each conflicting file still requires confirmation before it is moved aside and replaced with a symlink.
 
@@ -51,9 +51,7 @@ Restore copies files out of the backup snapshot and keeps the original backup in
 
 - Pixi is the default path for shared tools, runtimes, editors, language servers, and common CLI utilities.
 - The Pixi global manifest lives at `pixi/.pixi/manifests/pixi-global.toml`.
-- Mise is present but optional. `bringup.sh` does not run `setup_mise.sh`.
 - Homebrew/native package setup is not part of the default bringup path.
-- `install_scripts/setup_fedora.sh` is legacy and exits unless `RUN_LEGACY_FEDORA_SETUP=1` is set. Review and modernize it before real Fedora bringup use.
 
 ## Layout
 
@@ -67,11 +65,10 @@ Restore copies files out of the backup snapshot and keeps the original backup in
 | `alacritty/` | Alacritty terminal configuration. |
 | `p10k/` | Powerlevel10k prompt configuration. |
 | `pixi/` | Pixi global tool manifest. |
-| `mise/` | Optional Mise configuration. |
 | `llm/` | Shared LLM instructions, skills, agents, and tool-specific targets for OpenCode, Claude Code, and Codex. |
 | `macos/` | Optional macOS defaults script. |
 | `aerospace/` | Optional AeroSpace window-manager config. |
-| `install_scripts/` | Bringup, linking, Pixi setup, and legacy setup scripts. |
+| `install_scripts/` | Bringup, linking, Pixi setup, and backup restore scripts. |
 
 ## Platforms
 
@@ -79,7 +76,7 @@ The shared Pixi, shell, terminal, and editor path is intended to work across mac
 
 macOS-specific defaults live in `macos/.macos` and should be run explicitly. AeroSpace linking only happens on Darwin when `aerospace` is installed.
 
-Fedora setup is legacy and intentionally guarded. Do not treat it as a current fresh-machine path without reviewing it first.
+Linux setup uses the same Pixi-backed path as macOS where the relevant tools are available. Distribution-specific system packages are intentionally not automated here.
 
 ## Adding A Linked Config
 
