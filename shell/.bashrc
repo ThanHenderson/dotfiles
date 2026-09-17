@@ -114,3 +114,5 @@ if command -v fzf &> /dev/null; then
   source <(fzf --bash)
 fi
 if command -v zoxide &> /dev/null; then eval "$(zoxide init bash)"; fi
+
+[ -f "$HOME/.config/llm/env.sh" ] && . "$HOME/.config/llm/env.sh"

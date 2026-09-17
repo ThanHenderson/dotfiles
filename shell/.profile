@@ -18,6 +18,7 @@ prepend_path_if_dir() {
 prepend_path_if_dir "$HOME/bin"
 prepend_path_if_dir "$HOME/scripts"
 prepend_path_if_dir "$HOME/.local/bin"
+prepend_path_if_dir "$HOME/.cargo/bin"
 prepend_path_if_dir "$HOME/.pixi/bin"
 prepend_path_if_dir "$HOME/.pixi/envs/acme/bin"
 
