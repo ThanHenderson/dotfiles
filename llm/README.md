@@ -23,6 +23,7 @@ Skills are directly shared because all three tools support Agent Skills-style `S
 ## Workflow Names
 
 - `orient`: map an unfamiliar project quickly.
+- `orchestrate`: delegate complex work to agents while keeping the main context focused on coordination and results.
 - `review`: review changes for real risks.
 - `debug`: reproduce and fix failures.
 - `verify`: discover and run relevant checks.
