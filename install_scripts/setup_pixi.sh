@@ -55,6 +55,10 @@ append_line_once_regex "$HOME/.profile" \
     '\.local/bin'
 
 append_line_once_regex "$HOME/.profile" \
+    'export PATH="$HOME/.cargo/bin:$PATH"' \
+    '\.cargo/bin'
+
+append_line_once_regex "$HOME/.profile" \
     'export UV_TOOL_BIN_DIR="$HOME/.local/bin"' \
     'UV_TOOL_BIN_DIR'
 

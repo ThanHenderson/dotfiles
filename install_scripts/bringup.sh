@@ -123,7 +123,9 @@ else
     exit 1
 fi
 
-export PATH="$HOME/.local/bin:$HOME/.pixi/bin:$HOME/.pixi/envs/acme/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.pixi/bin:$HOME/.pixi/envs/acme/bin:$PATH"
+
+sh "$SCRIPT_DIR/setup_treesitter.sh"
 
 echo ""
 echo "Linking available tool configs..."

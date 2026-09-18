@@ -17,6 +17,7 @@ sh install_scripts/bringup.sh
 ## Bringup Flow
 
 - `install_scripts/setup_pixi.sh` installs Pixi if needed, links `pixi/.pixi/manifests/pixi-global.toml` into `~/.pixi/manifests/pixi-global.toml`, and runs `pixi global sync`.
+- `install_scripts/setup_treesitter.sh` then installs Tree-sitter CLI with Cargo into `~/.cargo/bin` unless version 0.26.1 or newer is already available, before Neovim plugin sync.
 - `bringup.sh` links tmux and Neovim configs early when those tools are available.
 - Full dotfile linking is optional and delegates to `install_scripts/link_dotfiles.sh`.
 - Git configuration is optional and prompt-driven.
